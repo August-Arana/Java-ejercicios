@@ -30,6 +30,8 @@ Hacé privados todos los atributos de `Aventurero`.
 - Reglas: el HP nunca baja de 0 ni supera `hpMaximo`. Si llega a 0, `estaVivo()` devuelve `false`.
 - 📜 ¿Por qué `recibirDanio` es mejor que un `setHp` público? Relacionalo con **encapsulamiento** y **ocultamiento de información**.
 
+Hecho
+
 ### Ejercicio 3: El modificador oculto
 Agregá el atributo `fuerza` (un valor entre 1 y 20) y el método `getModificadorFuerza()`.
 - En D&D el modificador se calcula como `(fuerza - 10) / 2`, redondeado hacia abajo.
@@ -38,11 +40,15 @@ Agregá el atributo `fuerza` (un valor entre 1 y 20) y el método `getModificado
 - El `main` que usa `getModificadorFuerza()` **no debe cambiar** entre las dos versiones.
 - 📜 Esto es el ejemplo de la "edad" de tus notas. ¿Qué es lo que queda oculto? ¿Qué gana quien usa la clase?
 
+Hecho
+
 ### Ejercicio 4: Modelar según el contexto
 Vas a modelar un `Dragon` en dos contextos distintos. Escribí solo los atributos y las firmas de los métodos, sin implementarlos.
 - **Contexto A**: un simulador de combate.
 - **Contexto B**: el sistema contable de un gremio de cazadores que vende partes de dragón.
 - 📜 ¿Qué atributos u operaciones aparecen en un contexto y no en el otro? ¿Por qué tus notas dicen que el contexto es el factor más importante al abstraer?
+
+Hecho
 
 ### Ejercicio 5: Cohesión rota 💀
 Te heredan esta clase:
