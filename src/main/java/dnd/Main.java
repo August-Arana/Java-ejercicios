@@ -3,15 +3,17 @@ package dnd;
 public class Main {
 
     public static void main(String[] args) {
-        Aventurero thorin1 = new Aventurero("Thorin", "Enano", 5, 40);
-        Aventurero thorin2 = new Aventurero("Thorin", "Enano", 5, 40);
-        Aventurero Legolas = new Aventurero("legolas", "Elfo", 5, 20);
-        Aventurero Aragorn = new Aventurero("Aragorn", "Humano", 5, 30);
+        Aventurero thorin1 = new Aventurero("Thorin", "Enano", 5, 40, 10);
+        Aventurero thorin2 = new Aventurero("Thorin", "Enano", 5, 40, 10);
+        Aventurero Legolas = new Aventurero("legolas", "Elfo", 5, 20, 10);
+        Aventurero Aragorn = new Aventurero("Aragorn", "Humano", 5, 30, 10);
 
         // Predecí : ¿qué devuelve `a1 == a2`? ¿Y `a1.equals(a2)`?
         // El primero va a dar false y el segundo... tambien?
-        // En ambos casos se esta comparando la direccion de memoria donde se encuentra el objeto instanciado? 
-        // == compara la direccion de memoria, no el contenido. como son instancias diferentes, da false
+        // En ambos casos se esta comparando la direccion de memoria donde se encuentra
+        // el objeto instanciado?
+        // == compara la direccion de memoria, no el contenido. como son instancias
+        // diferentes, da false
 
         System.out.println("¡La aventura comienza!\n");
         System.out.println("Aventureros creados");
@@ -20,8 +22,66 @@ public class Main {
 
         // - 📜 Explicá la diferencia entre objetos **iguales** e **idénticos** usando a
         // estos dos Thorins.
-        // Dos objetos iguales poseen los mismos datos internos, es decir, las variables con las que se crearon
+        // Dos objetos iguales poseen los mismos datos internos, es decir, las variables
+        // con las que se crearon
         // dos objetos son identicos cuando son el mismo objeto.
-        // esto se da por como funciona java internamente, basicamente al crear dos veces un objeto va a tener dos direcciones de memoria.
+        // esto se da por como funciona java internamente, basicamente al crear dos
+        // veces un objeto va a tener dos direcciones de memoria.
+        //
+        //
+        //
+
+        Arma espada = new Arma("Espada larga", 8);
+        Arma otra = espada;
+        otra.setDanio(12);
+        System.out.println(espada.getDanio()); // esto para mi va a devolver 12, ya que las dos variables estan
+                                               // apuntando al mismo objeto, entonces le estamos indicando a ese objeto
+                                               // que modifique su valor de danio;
+
+        otra = new Arma("Daga", 4);
+        System.out.println(espada.getNombre()); // Aca si, ahora otra comienza a apuntar a una nueva arma, pero espada
+                                                // sigue a donde estaba, por lo tanto, para mi, lo que va a suceder es
+                                                // que espada.getNombre va a devolver espada larga//correcto :)
+                                                //
+                                                //
+        //
+        //
+        Herrero Sergio = new Herrero();
+
+        System.out.println("Danio antes de sergio con mejorarNumero");
+        System.out.println(espada.getDanio());
+
+        Sergio.mejorarNumero(espada.getDanio()); // esto para mi no hace nada
+                                                 
+        System.out.println("Danio despues de sergio con mejorarNumero");
+        System.out.println(espada.getDanio());
+
+        System.out.println("-----------------");
+
+        System.out.println("Danio antes de sergio con mejorarArma");
+        System.out.println(espada.getDanio());
+
+        Sergio.mejorarArma(espada); // esto si va a dar un cambio verdadero, va a dar 5 mas que el anterior
+
+        System.out.println("Danio despues de sergio con mejorarArma");
+        System.out.println(espada.getDanio());
+
+        System.out.println("-----------------");
+        System.out.println("Danio antes de sergio con reemplazarArma");
+        System.out.println(espada.getDanio());
+        Sergio.reemplazarArma(espada); // esto para mi si va a funcionar, lo que va a terminar pasando es que la misma variablo ahora va a apuntar al arma nueva, que en este caso, es el martillo de guerra
+        // no, eso no produce cambio ya que la funcion reemplazar solo crea un objeto que es interno al metodo y este no sale por fuera del mismo, entonces no hace nada realmente, lo que si hubiere funcionado es lo siguiente:
+        // espada = herrero.reemplazarArma()
+        // y para eso:
+        // public Arma reemplazarArma(){
+        //   return new Arma("marti", 20);
+        // }
+        // y ahi si, hubiera modificadpublic void reemplazarArma(Arma a){
+        //a = new Arma("Martillo de guerra", 20); // <-- sólo cambia la copia local
+        
+        System.out.println("Danio despues de sergio con reemplazarArma");
+        System.out.println(espada.getDanio());
+        System.out.println(espada.getNombre());
+
     }
 }
