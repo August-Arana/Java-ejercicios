@@ -8,6 +8,7 @@ public class Aventurero {
     private int max_hp;
     private int strength;
     private int strength_mod;
+    private Mochila mochila;
 
     public Aventurero(String nombre, String raza, int nivel, int hp, int strength) {
         this.nombre = nombre;
@@ -21,7 +22,7 @@ public class Aventurero {
 
     void recibirDano(int damage) {
         this.hp -= damage;
-        if (this.hp < 0) {
+        if (this.hp <= 0) {
             this.hp = 0;
             System.out.println("El personaje ha muerto");
         }
@@ -63,5 +64,39 @@ public class Aventurero {
     // version 2
     int getStrMod_V2() {
         return strength_mod;
+    }
+
+    void setMochila(Mochila mochila){
+        this.mochila = mochila;
+    }
+    
+    void agregarItemEnMochila(Item item){
+        if (this.mochila != null) {
+           this.mochila.addItem(item);
+        }else {
+            System.out.println("El aventurero no tiene una mochila puesta");
+        }
+    } 
+
+    void listarItems(){
+        if (this.mochila != null) {
+           this.mochila.listarItems();
+        }else {
+            System.out.println("El aventurero no tiene una mochila puesta");
+        }
+    }
+
+    void quitarItemDeMochila(Item item){
+        if (this.mochila != null) {
+           this.mochila.removeItem(item);
+        }else {
+            System.out.println("El aventurero no tiene una mochila puesta");
+        }
+    } 
+
+    Mochila quitarMochila(){
+        Mochila estaMochila = this.mochila;
+        this.mochila = null;
+        return estaMochila;
     }
 }

@@ -52,7 +52,7 @@ public class Main {
         System.out.println(espada.getDanio());
 
         Sergio.mejorarNumero(espada.getDanio()); // esto para mi no hace nada
-                                                 
+
         System.out.println("Danio despues de sergio con mejorarNumero");
         System.out.println(espada.getDanio());
 
@@ -69,19 +69,48 @@ public class Main {
         System.out.println("-----------------");
         System.out.println("Danio antes de sergio con reemplazarArma");
         System.out.println(espada.getDanio());
-        Sergio.reemplazarArma(espada); // esto para mi si va a funcionar, lo que va a terminar pasando es que la misma variablo ahora va a apuntar al arma nueva, que en este caso, es el martillo de guerra
-        // no, eso no produce cambio ya que la funcion reemplazar solo crea un objeto que es interno al metodo y este no sale por fuera del mismo, entonces no hace nada realmente, lo que si hubiere funcionado es lo siguiente:
+        Sergio.reemplazarArma(espada); // esto para mi si va a funcionar, lo que va a terminar pasando es que la misma
+                                       // variablo ahora va a apuntar al arma nueva, que en este caso, es el martillo
+                                       // de guerra
+        // no, eso no produce cambio ya que la funcion reemplazar solo crea un objeto
+        // que es interno al metodo y este no sale por fuera del mismo, entonces no hace
+        // nada realmente, lo que si hubiere funcionado es lo siguiente:
         // espada = herrero.reemplazarArma()
         // y para eso:
         // public Arma reemplazarArma(){
-        //   return new Arma("marti", 20);
+        // return new Arma("marti", 20);
         // }
         // y ahi si, hubiera modificadpublic void reemplazarArma(Arma a){
-        //a = new Arma("Martillo de guerra", 20); // <-- sólo cambia la copia local
-        
+        // a = new Arma("Martillo de guerra", 20); // <-- sólo cambia la copia local
+
         System.out.println("Danio despues de sergio con reemplazarArma");
         System.out.println(espada.getDanio());
         System.out.println(espada.getNombre());
+
+        Mochila mochila = new Mochila();
+        Legolas.setMochila(mochila);
+        Item carpa = new Item("carpa", 1, 20);
+        // ojo aca, fijate que lo que estas haciendo es algo muy imperativo de alguna
+        // manera, el codigo aca esta agregando el item a la mochila. Nosotros en este
+        // lado nos estamos metiendo en la mochila del aventurero en lugar de hacer que
+        // el aventurero sea quien administre su propia mochila, dejo comentado el
+        // codigo viejo.
+        // Legolas.getMochila().addItem(carpa);
+        // Legolas.getMochila().listarItems();
+        // y ahora si, hagamos que el aventurero administre su mochila
+        Legolas.agregarItemEnMochila(carpa);
+        Legolas.listarItems();
+        Legolas.recibirDano(100);
+        if (!Legolas.estaVivo()) {
+
+            Aragorn.setMochila(Legolas.quitarMochila());
+            Aragorn.listarItems();
+        }
+
+        // ¿Por qué esto es agregación y no composición?
+        // Esto es agregacion ya que un aventurero _usa_ una mochila y la mochila en si
+        // misma no forma parte del aventurero, es decir, aunque el aventurero no
+        // exista, la mochila si puede hacerlo de forma independiente.
 
     }
 }
