@@ -336,7 +336,7 @@ public class Car {
 
     class Engine {
         int displacement;
-        Stringmanufacturer;
+        String manufacturer;
         void moreRpm(){
             //broooom
         }
