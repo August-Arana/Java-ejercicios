@@ -233,7 +233,7 @@ Guerrero g = new Personaje("x");   // ¿?
 ## ACTO V: Las trampas de la mazmorra
 *Excepciones.*
 
-### Ejercicio 18: Excepciones propias del calabozo
+##a Ejercicio 18: Excepciones propias del calabozo
 Creá esta jerarquía de excepciones:
 
 ```
