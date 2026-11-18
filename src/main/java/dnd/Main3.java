@@ -22,5 +22,12 @@ public class Main3 {
         // el COMPILADOR elige cual llamar en base a la firma del metodo.
         // esto se hace evidente por el caso D, donde el compilador elige D sin ejecutar
         // nada;
+
+        Guerrero Aragorn = new Guerrero("Aragorn", 20, 5, 10);
+        Aragorn.presentarse();
+        Aragorn.atacar();
+
+        Mago gandalf = new Mago();
+        gandalf.atacar();
     }
 }
