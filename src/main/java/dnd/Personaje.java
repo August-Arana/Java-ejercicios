@@ -28,4 +28,12 @@ public class Personaje {
         System.out.println("Hola mi nombre es " + this.nombre);
     }
 
+    public void ordenarDefensa(Personaje p) {
+        if (p instanceof Guerrero) {
+            ((Guerrero) p).cubrirAliado();
+        }else{
+            System.out.println("El personaje no puede cubrir a otro");
+        }
+    }
+
 }
