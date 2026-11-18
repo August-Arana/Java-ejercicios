@@ -1,5 +1,8 @@
 package dnd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Aventurero {
     private String nombre;
     private String raza;
@@ -9,6 +12,9 @@ public class Aventurero {
     private int strength;
     private int strength_mod;
     private Mochila mochila;
+    private Gremio gremio;
+    private List<Mision> misionesCompletadas;
+
 
     public Aventurero(String nombre, String raza, int nivel, int hp, int strength) {
         this.nombre = nombre;
@@ -18,6 +24,7 @@ public class Aventurero {
         this.max_hp = hp;
         this.strength = strength;
         this.strength_mod = (strength - 10) / 2;
+        this.misionesCompletadas = new ArrayList<Mision>();
     }
 
     void recibirDano(int damage) {
@@ -52,8 +59,10 @@ public class Aventurero {
 
     // - Esto es el ejemplo de la "edad" de tus notas. ¿Qué es lo que queda
     // oculto? ¿Qué gana quien usa la clase?
-    // Lo que gana quien usa la clase es que no tiene el codigo acoplado, por lo tanto,
-    // al usuario de la clase no le importa como internamente la clase incorpora el codigo
+    // Lo que gana quien usa la clase es que no tiene el codigo acoplado, por lo
+    // tanto,
+    // al usuario de la clase no le importa como internamente la clase incorpora el
+    // codigo
     // o si calcula o guarda el valor, lo importante es que lo devuelve y listo
 
     // version 1
@@ -66,37 +75,85 @@ public class Aventurero {
         return strength_mod;
     }
 
-    void setMochila(Mochila mochila){
+    void setMochila(Mochila mochila) {
         this.mochila = mochila;
     }
-    
-    void agregarItemEnMochila(Item item){
-        if (this.mochila != null) {
-           this.mochila.addItem(item);
-        }else {
-            System.out.println("El aventurero no tiene una mochila puesta");
-        }
-    } 
 
-    void listarItems(){
+    void agregarItemEnMochila(Item item) {
         if (this.mochila != null) {
-           this.mochila.listarItems();
-        }else {
+            this.mochila.addItem(item);
+        } else {
             System.out.println("El aventurero no tiene una mochila puesta");
         }
     }
 
-    void quitarItemDeMochila(Item item){
+    void listarItems() {
         if (this.mochila != null) {
-           this.mochila.removeItem(item);
-        }else {
+            this.mochila.listarItems();
+        } else {
             System.out.println("El aventurero no tiene una mochila puesta");
         }
-    } 
+    }
 
-    Mochila quitarMochila(){
+    void quitarItemDeMochila(Item item) {
+        if (this.mochila != null) {
+            this.mochila.removeItem(item);
+        } else {
+            System.out.println("El aventurero no tiene una mochila puesta");
+        }
+    }
+
+    Mochila quitarMochila() {
         Mochila estaMochila = this.mochila;
         this.mochila = null;
         return estaMochila;
+    }
+
+    public void setGremio(Gremio gremio) {
+        if (!tieneGremio()) {
+            this.gremio = gremio;
+            gremio.agregarMiembro(this);
+        } else {
+            if (this.gremio == gremio) {
+                return;
+            } else {
+                System.out.println("El aventurero se encuentra en otro gremio, primero debe abandonar el corriente");
+            }
+        }
+    }
+
+    public Boolean tieneGremio() {
+        return !(this.gremio == null);
+    }
+
+    public String getGremio() {
+
+        String gremio;
+
+        if (this.gremio != null) {
+            gremio = this.gremio.getNombre();
+        } else {
+            gremio = "El aventurero no esta en ningun gremio";
+        }
+        return gremio;
+    }
+
+    public void abandonarGremio() {
+        this.gremio.hecharMiembro(this);
+        this.gremio = null;
+    }
+
+    public void agregarMision(Mision completada) {
+        this.misionesCompletadas.add(completada);
+    }
+
+    public void mostrarCompletadas() {
+        for (Mision mision : misionesCompletadas) {
+            System.out.println(mision.getNombre());
+        }
+    }
+
+    public String getNombre() {
+        return this.nombre;
     }
 }
