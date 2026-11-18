@@ -15,6 +15,19 @@ public class Aventurero {
     private Gremio gremio;
     private List<Mision> misionesCompletadas;
 
+    public Aventurero(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Aventurero(String nombre, String raza) {
+        this(nombre);
+        this.raza = raza;
+    }
+
+    public Aventurero(String nombre, String raza, int nivel) {
+        this(nombre, raza);
+        this.nivel = nivel;
+    }
 
     public Aventurero(String nombre, String raza, int nivel, int hp, int strength) {
         this.nombre = nombre;
