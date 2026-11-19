@@ -23,8 +23,10 @@ public class Mago extends Personaje {
         System.out.println("Lanza un proyectil magico");
     }
     
-    public void lanzarHechizo(){
-        // Lanzar hechizo
+    public void lanzarHechizo(String hechizo) throws HechizoInvalidoException{
+        if (hechizo == null || hechizo.isEmpty()) {
+           throw new HechizoInvalidoException("El hechizo no tiene ningun nombre!!"); 
+        }
     }
 
     public void familiarAtaca(){
